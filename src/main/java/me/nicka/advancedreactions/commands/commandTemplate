@@ -1,0 +1,33 @@
+package me.nicka.advancedreactions.commands;
+
+import me.nicka.advancedreactions.CommandBase;
+import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+import static me.nicka.advancedreactions.commands.CommandEffects.commandEffects;
+
+public class COMMAND {
+    public COMMAND(){
+        new CommandBase("COMMAND", 1, 1, true){
+            @Override
+            public boolean onCommand(CommandSender sender, String[] arguments){
+                Player p_sender = (Player) sender;
+                Player p_receiver = Bukkit.getPlayer(arguments[0]);
+
+
+                EFFECTS (receiver, particle, sound)
+                Msg
+
+
+
+                return true;
+            }
+
+            @Override
+            public String getUsage(){
+                return "/COMMAND {PLAYER}";
+            }
+        };
+    }
+}

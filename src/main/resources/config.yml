@@ -1,0 +1,63 @@
+#REACTION MESSAGES
+
+Messages:
+#List of particles can be found at https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html
+#List of sounds can be found at https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+#Use BLOCK_DUST as a particle if you want a blood effect
+#Put "" to disable it
+
+  Kiss:
+    Message: "%SENDER% has blown you a kiss ❤"
+    Particle: "HEART"
+    Sound: "ENTITY_SLIME_JUMP"
+  Hug:
+    Message:  "%SENDER% just sent you a warm hug."
+    Particle: "VILLAGER_HAPPY"
+    Sound: "ENTITY_VILLAGER_TRADE"
+  Pinch:
+    Message: "&cYou were pinched by %SENDER%!"
+    Particle: "SNOWBALL"
+    Sound: "ENTITY_BAT_HURT"
+    Damage: TRUE
+  Punch:
+    Message: "&c%SENDER% just punched you!"
+    Particle: "CRIT_MAGIC"
+    Sound: "ENTITY_PLAYER_ATTACK_STRONG"
+    Damage: TRUE
+  Slap:
+    Message: "&c%SENDER% slapped you!!!"
+    Particle: "CRIT"
+    Sound: "ENTITY_PLAYER_ATTACK_STRONG"
+    Damage: TRUE
+  Stare:
+    Message: "&4&o%SENDER% &c&ois staring at you..."
+    Particle: "PORTAL"
+    Sound: "ENTITY_ENDERMAN_STARE"
+  Lick:
+    Message: "%SENDER% has licked you..."
+    Particle: "WATER_SPLASH"
+    Sound: "ENTITY_AXOLOTL_SPLASH"
+  Stab:
+    Message: "&c%SENDER% has stabbed you!!!!"
+    Particle: "BLOCK_DUST"
+    Sound: "ENTITY_PUFFER_FISH_STING"
+    Damage: TRUE
+  Pet:
+    Message: "%SENDER% is petting you."
+    Particle: "VILLAGER_HAPPY"
+    Sound: "ENTITY_WOLF_AMBIENT"
+  Highfive:
+    Message: "%SENDER% just gave you a highfive!"
+    Particle: "CRIT"
+    Sound: "BLOCK_STONE_STEP"
+
+#GENERAL
+
+#How long in seconds each player can use between reaction command
+ReactionCooldown: 5
+
+#How much damage does the player take when damaged by attack reaction (the ones that have damaged enabled). Enter 0 for no damage
+ReactionDamage: .001
+
+
+
