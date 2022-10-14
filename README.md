@@ -7,9 +7,9 @@ FEATURES
 
 highfive
 
-hug
+/hug
 
-kiss
+/kiss
 
 lick
 
