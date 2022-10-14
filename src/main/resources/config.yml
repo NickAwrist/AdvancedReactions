@@ -69,5 +69,7 @@ ReactionCooldown: 5
 #How much damage does the player take when damaged by attack reaction (the ones that have damaged enabled). Enter 0 for no damage
 ReactionDamage: .001
 
+#Config Version. NOT PLUGIN VERSION
+ConfigVersion: 1.1
 
 
