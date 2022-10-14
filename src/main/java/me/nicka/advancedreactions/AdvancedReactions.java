@@ -18,7 +18,7 @@ public final class AdvancedReactions extends JavaPlugin {
         IgnoreList.get().options().copyDefaults();
         IgnoreList.save();
 
-        Double version = 1.1;
+        double version = 1.1;
 
         if(getConfig().getInt("ConfigVersion") != version){
             Bukkit.getLogger().warning("[Advanced Reactions] OUT-OF-DATE CONFIG. DELETE OLD ONE AND RESTART SERVER");
