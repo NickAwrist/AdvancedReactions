@@ -2,28 +2,28 @@ Ever wanted to send reactions to your friends via chat? You now can with this pl
 
 This plugin provides chat-based reactions with the use of commands.
 
-
+#
 FEATURES
 
-highfive
+/highfive
 
 /hug
 
 /kiss
 
-lick
+/lick
 
-pet
+/pet
 
-pinch
+/pinch
 
-punch
+/punch
 
-slap
+/slap
 
-stab
+/stab
 
-stare
+/stare
 
 
 Follow these commands with a player name to send your reaction their way!
