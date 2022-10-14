@@ -32,7 +32,8 @@ public class Lick {
                     p = Particle.BUBBLE_POP;
 
                 commandEffects(p_receiver, p, s);
-                Msg.send(p_receiver, config.getString("Messages.Lick.Message").replace("%SENDER%", p_sender.getName()));
+                Msg.send(p_receiver, config.getString("Messages.Lick.MessageToReceiver").replace("%SENDER%", p_sender.getName()));
+                Msg.send(p_sender, config.getString("Messages.Lick.MessageToSender").replace("%RECEIVER%", p_receiver.getName()));
 
 
                 return true;

@@ -33,7 +33,8 @@ public class Stare {
                     p = Particle.BUBBLE_POP;
 
                 commandEffects(p_receiver, p, s);
-                Msg.send(p_receiver, config.getString("Messages.Stare.Message").replace("%SENDER%", p_sender.getName()));
+                Msg.send(p_receiver, config.getString("Messages.Stare.MessageToReceiver").replace("%SENDER%", p_sender.getName()));
+                Msg.send(p_sender, config.getString("Messages.Stare.MessageToSender").replace("%RECEIVER%", p_receiver.getName()));
 
                 return true;
             }

@@ -32,7 +32,8 @@ public class Stab {
                     p = Particle.BUBBLE_POP;
 
                 commandEffects(p_receiver, p, s);
-                Msg.send(p_receiver, config.getString("Messages.Stab.Message").replace("%SENDER%", p_sender.getName()));
+                Msg.send(p_receiver, config.getString("Messages.Stab.MessageToReceiver").replace("%SENDER%", p_sender.getName()));
+                Msg.send(p_sender, config.getString("Messages.Stab.MessageToSender").replace("%RECEIVER%", p_receiver.getName()));
 
                 if(config.getBoolean("Messages.Stab.Damage"))
                     p_receiver.damage(config.getDouble("ReactionDamage"));

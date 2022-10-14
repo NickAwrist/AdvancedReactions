@@ -34,7 +34,8 @@ public class Highfive{
 
                 commandEffects(p_receiver, p, s);
 
-                Msg.send(p_receiver, config.getString("Messages.Highfive.Message").replace("%SENDER%", p_sender.getName()));
+                Msg.send(p_receiver, config.getString("Messages.Highfive.MessageToReceiver").replace("%SENDER%", p_sender.getName()));
+                Msg.send(p_sender, config.getString("Messages.Highfive.MessageToSender").replace("%RECEIVER%", p_receiver.getName()));
 
 
                 return true;
