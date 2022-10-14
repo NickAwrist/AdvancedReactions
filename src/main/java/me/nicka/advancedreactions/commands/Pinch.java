@@ -32,7 +32,8 @@ public class Pinch {
                     p = Particle.BUBBLE_POP;
 
                 commandEffects(p_receiver, p, s);
-                Msg.send(p_receiver, config.getString("Messages.Pinch.Message").replace("%SENDER%", p_sender.getName()));
+                Msg.send(p_receiver, config.getString("Messages.Pinch.MessageToReceiver").replace("%SENDER%", p_sender.getName()));
+                Msg.send(p_sender, config.getString("Messages.Pinch.MessageToSender").replace("%RECEIVER%", p_receiver.getName()));
 
                 if(config.getBoolean("Messages.Pinch.Damage"))
                     p_receiver.damage(config.getDouble("ReactionDamage"));

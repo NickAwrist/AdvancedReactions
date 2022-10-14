@@ -32,7 +32,8 @@ public class Punch {
                     p = Particle.BUBBLE_POP;
 
                 commandEffects(p_receiver, p, s);
-                Msg.send(p_receiver, config.getString("Messages.Punch.Message").replace("%SENDER%", p_sender.getName()));
+                Msg.send(p_receiver, config.getString("Messages.Punch.MessageToReceiver").replace("%SENDER%", p_sender.getName()));
+                Msg.send(p_sender, config.getString("Messages.Punch.MessageToSender").replace("%RECEIVER%", p_receiver.getName()));
 
                 if(config.getBoolean("Messages.Punch.Damage"))
                     p_receiver.damage(config.getDouble("ReactionDamage"));

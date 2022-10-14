@@ -4,4 +4,4 @@ main: me.nicka.advancedreactions.AdvancedReactions
 api-version: 1.19
 prefix: AdvancedReactions
 authors: [ Nick_the_block ]
-description: At as loss for words after your friend does something dumb? Slap them!
+description: A chat reaction plugin for Minecraft

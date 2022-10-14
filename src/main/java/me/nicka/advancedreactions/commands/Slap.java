@@ -33,7 +33,8 @@ public class Slap {
                     p = Particle.BUBBLE_POP;
 
                 commandEffects(p_receiver, p, s);
-                Msg.send(p_receiver, config.getString("Messages.Slap.Message").replace("%SENDER%", p_sender.getName()));
+                Msg.send(p_receiver, config.getString("Messages.Slap.MessageToReceiver").replace("%SENDER%", p_sender.getName()));
+                Msg.send(p_sender, config.getString("Messages.Slap.MessageToSender").replace("%RECEIVER%", p_receiver.getName()));
 
                 if(config.getBoolean("Messages.Slap.Damage"))
                     p_receiver.damage(config.getDouble("ReactionDamage"));
