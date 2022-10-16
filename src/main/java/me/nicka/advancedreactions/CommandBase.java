@@ -113,17 +113,20 @@ public abstract class CommandBase  extends BukkitCommand implements CommandExecu
             }, 20L * delay);
         }
 
-        Player p_receiver = Bukkit.getPlayer(arguments[0]);
+        Player p_receiver = null;
         Player p_sender = (Player) sender;
+        if(arguments.length != 0) {
+            p_receiver = Bukkit.getPlayer(arguments[0]);
 
-        if(p_receiver!=null) {
-            if(checkIgnore(p_sender, p_receiver)) {
-                Msg.send(sender, "[AdvancedReactions] &c&oUnable to send reaction &r&l" + p_receiver.getName() + "&r&c&o is ignoring you");
+            if (p_receiver != null) {
+                if (checkIgnore(p_sender, p_receiver)) {
+                    Msg.send(sender, "[AdvancedReactions] &c&oUnable to send reaction &r&l" + p_receiver.getName() + "&r&c&o is ignoring you");
+                    return true;
+                }
+            } else {
+                Msg.send(p_sender, "[AdvancedReactions] &c&oThat player is not online");
                 return true;
             }
-        } else {
-            Msg.send(p_sender, "[AdvancedReactions] &c&oThat player is not online");
-            return true;
         }
 
         if(!onCommand(sender, arguments)){

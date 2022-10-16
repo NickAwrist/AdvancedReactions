@@ -26,7 +26,6 @@ public final class AdvancedReactions extends JavaPlugin {
 
         Bukkit.getLogger().info("------------AdvancedReactions HAS BEEN ENABLED!!!------------");
 
-
         new Kiss();
         new Slap();
         new Pinch();
@@ -40,6 +39,7 @@ public final class AdvancedReactions extends JavaPlugin {
         new Pet();
 
         new ARIgnore();
+        new ARHelp();
 
     }
 
