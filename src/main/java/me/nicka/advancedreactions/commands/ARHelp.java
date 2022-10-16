@@ -25,6 +25,7 @@ public class ARHelp {
                 Msg.send(p_sender, "/slap");
                 Msg.send(p_sender, "/stab");
                 Msg.send(p_sender, "/stare");
+                Msg.send(p_sender, "/arignore");
 
                 return true;
             }
