@@ -1,12 +1,18 @@
 package me.nicka.advancedreactions;
 
+import lombok.Getter;
 import me.nicka.advancedreactions.commands.*;
 import me.nicka.advancedreactions.files.IgnoreList;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class AdvancedReactions extends JavaPlugin {
+
+    @Getter
     private static AdvancedReactions plugin;
+
+    @Getter
+    private final String prefix = "&8[&6AR&8]";
 
     @Override
     public void onEnable() {
@@ -39,7 +45,7 @@ public final class AdvancedReactions extends JavaPlugin {
         new Pet();
 
         new ARIgnore();
-        new ARHelp();
+        new ARList();
 
     }
 
@@ -49,7 +55,4 @@ public final class AdvancedReactions extends JavaPlugin {
         Bukkit.getLogger().info("------------AdvancedReactions HAS BEEN DISABLED!!!------------");
     }
 
-    public static AdvancedReactions getPlugin(){
-        return plugin;
-    }
 }
