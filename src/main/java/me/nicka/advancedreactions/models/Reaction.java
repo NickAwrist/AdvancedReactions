@@ -40,6 +40,14 @@ public class Reaction {
         REACTIONS.put(reactionName.toLowerCase(), this);
     }
 
+    public static Reaction getReaction(String reactionName){
+        return REACTIONS.get(reactionName.toLowerCase());
+    }
+
+    public static HashMap<String, Reaction> getReactions(){
+        return REACTIONS;
+    }
+
     public static void executeReaction(String reactionName, Player sender, Player receiver) {
         Reaction reaction = REACTIONS.get(reactionName);
 

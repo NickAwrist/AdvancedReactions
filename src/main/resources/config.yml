@@ -1,65 +1,77 @@
-#REACTION MESSAGES
+# REACTIONS
 
-Messages:
-#List of particles can be found at https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html
-#List of sounds can be found at https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
-#Use BLOCK_DUST as a particle if you want a blood effect
-#Put "" to disable it
+# List of particles can be found at https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html
+# List of sounds can be found at https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+# Use BLOCK_DUST as a particle if you want a blood effect
 
+# Possible options for a reaction
+#     messageToReceiver: Message that the receiver will see
+#     messageToSender: Message that the sender will see
+#     particle: Particle that will be shown
+#     sound: Sound that will be played
+#     damage: TRUE or FALSE. If TRUE, the player will take damage when the reaction is used
+#     damageNum: How much damage the player will take when the reaction is used. Enter 0 for no damage or set damage to FALSE
+# Not all options have to be used
+
+reactions:
   Kiss:
-    MessageToReceiver: "%SENDER% has blown you a kiss ❤"
-    MessageToSender: "You just blew a kiss to %RECEIVER%. Awwww ❤"
-    Particle: "HEART"
-    Sound: "ENTITY_SLIME_JUMP"
+    messageToReceiver: "%SENDER% has blown you a kiss ❤"
+    messageToSender: "You just blew a kiss to %RECEIVER%. Awwww ❤"
+    particle: "HEART"
+    sound: "ENTITY_SLIME_JUMP"
   Hug:
-    MessageToReceiver:  "%SENDER% just sent you a warm hug."
-    MessageToSender: "You gave %RECEIVER% a warm hug."
-    Particle: "VILLAGER_HAPPY"
-    Sound: "ENTITY_VILLAGER_TRADE"
+    messageToReceiver:  "%SENDER% just sent you a warm hug."
+    messageToSender: "You gave %RECEIVER% a warm hug."
+    particle: "VILLAGER_HAPPY"
+    sound: "ENTITY_VILLAGER_TRADE"
   Pinch:
-    MessageToReceiver: "&cYou were pinched by %SENDER%!"
-    MessageToSender: "&cYou just pinched %RECEIVER%"
-    Particle: "SNOWBALL"
-    Sound: "ENTITY_BAT_HURT"
-    Damage: TRUE
+    messageToReceiver: "&cYou were pinched by %SENDER%!"
+    messageToSender: "&cYou just pinched %RECEIVER%"
+    particle: "SNOWBALL"
+    sound: "ENTITY_BAT_HURT"
+    damage: TRUE
+    damageNum: 0.1
   Punch:
-    MessageToReceiver: "&c%SENDER% just punched you!"
-    MessageToSender: "&cYou punched %RECEIVER%!"
-    Particle: "CRIT_MAGIC"
-    Sound: "ENTITY_PLAYER_ATTACK_STRONG"
-    Damage: TRUE
+    messageToReceiver: "&c%SENDER% just punched you!"
+    messageToSender: "&cYou punched %RECEIVER%!"
+    particle: "CRIT_MAGIC"
+    sound: "ENTITY_PLAYER_ATTACK_STRONG"
+    damage: TRUE
+    damageNum: 0.1
   Slap:
-    MessageToReceiver: "&c%SENDER% slapped you!!!"
-    MessageToSender: "&cYou just slapped %RECEIVER%!"
-    Particle: "CRIT"
-    Sound: "ENTITY_PLAYER_ATTACK_STRONG"
-    Damage: TRUE
+    messageToReceiver: "&c%SENDER% slapped you!!!"
+    messageToSender: "&cYou just slapped %RECEIVER%!"
+    particle: "CRIT"
+    sound: "ENTITY_PLAYER_ATTACK_STRONG"
+    damage: TRUE
+    damageNum: 0.1
   Stare:
-    MessageToReceiver: "&4&o%SENDER% &c&ois staring at you..."
-    MessageToSender: "&4&oYou stare at %RECEIVER%..."
-    Particle: "PORTAL"
-    Sound: "ENTITY_ENDERMAN_STARE"
+    messageToReceiver: "&4&o%SENDER% &c&ois staring at you..."
+    messageToSender: "&4&oYou stare at %RECEIVER%..."
+    particle: "PORTAL"
+    sound: "ENTITY_ENDERMAN_STARE"
   Lick:
-    MessageToReceiver: "%SENDER% has licked you..."
-    MessageToSender: "You licked %RECEIVER%... did they taste good?"
-    Particle: "WATER_SPLASH"
-    Sound: "ENTITY_AXOLOTL_SPLASH"
+    messageToReceiver: "%SENDER% has licked you..."
+    messageToSender: "You licked %RECEIVER%... did they taste good?"
+    particle: "WATER_SPLASH"
+    sound: "ENTITY_AXOLOTL_SPLASH"
   Stab:
-    MessageToReceiver: "&c%SENDER% has stabbed you!!!!"
-    MessageToSender: "&cYou stabbed %RECEIVER%!!!"
-    Particle: "BLOCK_DUST"
-    Sound: "ENTITY_PUFFER_FISH_STING"
-    Damage: TRUE
+    messageToReceiver: "&c%SENDER% has stabbed you!!!!"
+    messageToSender: "&cYou stabbed %RECEIVER%!!!"
+    particle: "BLOCK_DUST"
+    sound: "ENTITY_PUFFER_FISH_STING"
+    damage: TRUE
+    damageNum: 0.1
   Pet:
-    MessageToReceiver: "%SENDER% is petting you."
-    MessageToSender: "You are petting %RECEIVER%."
-    Particle: "VILLAGER_HAPPY"
-    Sound: "ENTITY_WOLF_AMBIENT"
+    messageToReceiver: "%SENDER% is petting you."
+    messageToSender: "You are petting %RECEIVER%."
+    particle: "VILLAGER_HAPPY"
+    sound: "ENTITY_WOLF_AMBIENT"
   Highfive:
-    MessageToReceiver: "%SENDER% just gave you a highfive!"
-    MessageToSender: "You shared a highfive with %RECEIVER%!"
-    Particle: "CRIT"
-    Sound: "BLOCK_STONE_STEP"
+    messageToReceiver: "%SENDER% just gave you a highfive!"
+    messageToSender: "You shared a highfive with %RECEIVER%!"
+    particle: "CRIT"
+    sound: "BLOCK_STONE_STEP"
 
 #GENERAL
 
@@ -70,6 +82,6 @@ ReactionCooldown: 5
 ReactionDamage: .001
 
 #Config Version. NOT PLUGIN VERSION
-ConfigVersion: 1.1
+ConfigVersion: 2.0
 
 

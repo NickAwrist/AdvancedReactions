@@ -3,8 +3,15 @@ package me.nicka.advancedreactions;
 import lombok.Getter;
 import me.nicka.advancedreactions.commands.*;
 import me.nicka.advancedreactions.files.IgnoreList;
+import me.nicka.advancedreactions.models.Reaction;
 import org.bukkit.Bukkit;
+import org.bukkit.Particle;
+import org.bukkit.Sound;
+import org.bukkit.command.CommandMap;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.lang.reflect.Field;
 
 public final class AdvancedReactions extends JavaPlugin {
 
@@ -24,28 +31,20 @@ public final class AdvancedReactions extends JavaPlugin {
         IgnoreList.get().options().copyDefaults();
         IgnoreList.save();
 
-        double version = 1.1;
+        double version = 2.0;
 
         if(getConfig().getInt("ConfigVersion") != version){
-            Bukkit.getLogger().warning("[Advanced Reactions] OUT-OF-DATE CONFIG. DELETE OLD ONE AND RESTART SERVER");
+            Bukkit.getLogger().warning("[AR] OUT-OF-DATE CONFIG. DELETE OLD ONE AND RESTART SERVER");
         }
 
+        Bukkit.getLogger().info("[AR] Loading reactions...");
+        loadReactionsFromConfig();
+
+        Bukkit.getLogger().info("[AR] Loading commands...");
+        registerReactionCommands();
+
+
         Bukkit.getLogger().info("------------AdvancedReactions HAS BEEN ENABLED!!!------------");
-
-        new Kiss();
-        new Slap();
-        new Pinch();
-        new Punch();
-        new Slap();
-        new Stare();
-        new Hug();
-        new Lick();
-        new Stab();
-        new Highfive();
-        new Pet();
-
-        new ARIgnore();
-        new ARList();
 
     }
 
@@ -53,6 +52,61 @@ public final class AdvancedReactions extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
         Bukkit.getLogger().info("------------AdvancedReactions HAS BEEN DISABLED!!!------------");
+    }
+
+
+   private void loadReactionsFromConfig(){
+       ConfigurationSection reactionSection = getConfig().getConfigurationSection("reactions");
+
+       if(reactionSection != null){
+           for(String reactionName: reactionSection.getKeys(false)){
+               ConfigurationSection section = reactionSection.getConfigurationSection(reactionName);
+               if(section != null){
+                   String messageToReceiver = section.getString("messageToReceiver", "");
+                   String messageToSender = section.getString("messageToSender", "");
+                   String particleName = section.getString("particle", null);
+                   String soundName = section.getString("sound", null);
+                   boolean dealsDamage = section.getBoolean("dealsDamage", false);
+                   float damageNum = (float) section.getDouble("damageNum", 0.0);
+
+                   Particle particle = null;
+                   if(particleName != null && !particleName.isEmpty()){
+                        particle = Particle.valueOf(particleName);
+                   }
+
+                   Sound sound = null;
+                   if(soundName != null && !soundName.isEmpty()){
+                       sound = Sound.valueOf(soundName);
+                   }
+
+                   new Reaction(reactionName, messageToReceiver, messageToSender, particle, sound, dealsDamage, damageNum);
+
+                   Bukkit.getLogger().info("Loaded reaction: "+reactionName);
+               }
+           }
+       }
+   }
+
+   private void registerReactionCommands(){
+        Reaction.getReactions().forEach((reactionName, reaction) -> {
+            getCommandMap().register(reactionName, new CustomReactionCommand(
+                    reactionName,
+                    new ReactionCommand(reactionName),
+                    "/"+reactionName+" <player>",
+                    "advancedreactions."+reactionName
+            ));
+            Bukkit.getLogger().info("Registered command: "+reactionName);
+        });
+   }
+
+    private CommandMap getCommandMap() {
+        try {
+            final Field bukkitCommandMap = getServer().getClass().getDeclaredField("commandMap");
+            bukkitCommandMap.setAccessible(true);
+            return (CommandMap) bukkitCommandMap.get(getServer());
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            return null;
+        }
     }
 
 }
