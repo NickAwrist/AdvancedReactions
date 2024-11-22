@@ -43,9 +43,7 @@ public final class AdvancedReactions extends JavaPlugin {
         Bukkit.getLogger().info("[AR] Loading commands...");
         registerReactionCommands();
 
-
         Bukkit.getLogger().info("------------AdvancedReactions HAS BEEN ENABLED!!!------------");
-
     }
 
     @Override
@@ -66,7 +64,6 @@ public final class AdvancedReactions extends JavaPlugin {
                    String messageToSender = section.getString("messageToSender", "");
                    String particleName = section.getString("particle", null);
                    String soundName = section.getString("sound", null);
-                   boolean dealsDamage = section.getBoolean("dealsDamage", false);
                    float damageNum = (float) section.getDouble("damageNum", 0.0);
 
                    Particle particle = null;
@@ -79,7 +76,7 @@ public final class AdvancedReactions extends JavaPlugin {
                        sound = Sound.valueOf(soundName);
                    }
 
-                   new Reaction(reactionName, messageToReceiver, messageToSender, particle, sound, dealsDamage, damageNum);
+                   new Reaction(reactionName, messageToReceiver, messageToSender, particle, sound, damageNum);
 
                    Bukkit.getLogger().info("Loaded reaction: "+reactionName);
                }
@@ -108,5 +105,4 @@ public final class AdvancedReactions extends JavaPlugin {
             return null;
         }
     }
-
 }

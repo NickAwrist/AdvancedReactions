@@ -2,11 +2,14 @@ package me.nicka.advancedreactions.commands;
 
 import me.nicka.advancedreactions.AdvancedReactions;
 import me.nicka.advancedreactions.Msg;
+import me.nicka.advancedreactions.models.Reaction;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.HashMap;
 
 public class ARList implements CommandExecutor {
 
@@ -26,21 +29,14 @@ public class ARList implements CommandExecutor {
             return true;
         }
 
+        HashMap<String, Reaction> reactionHashMap = Reaction.getReactions();
+
         Msg.send(sender, "&l--List of Reactions--", AdvancedReactions.getPlugin().getPrefix());
-        Msg.send(sender, "/highfive");
-        Msg.send(sender, "/hug");
-        Msg.send(sender, "/kiss");
-        Msg.send(sender, "/kiss");
-        Msg.send(sender, "/lick");
-        Msg.send(sender, "/pet");
-        Msg.send(sender, "/pinch");
-        Msg.send(sender, "/punch");
-        Msg.send(sender, "/slap");
-        Msg.send(sender, "/stab");
-        Msg.send(sender, "/stare");
+        for(String reactionName : reactionHashMap.keySet()){
+            Msg.send(sender, "&7- &e" + reactionName, AdvancedReactions.getPlugin().getPrefix());
+        }
 
         return true;
-
     }
 
 }

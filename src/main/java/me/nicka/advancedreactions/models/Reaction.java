@@ -21,27 +21,17 @@ public class Reaction {
     private final String messageToSender;
     private final Particle particle;
     private final Sound sound;
-    private final boolean dealsDamage;
     private final float damageNum;
 
-    public Reaction(String reactionName, String messageToReceiver, String messageToSender, Particle particle, Sound sound, boolean dealsDamage, float damageNum){
+    public Reaction(String reactionName, String messageToReceiver, String messageToSender, Particle particle, Sound sound, float damageNum){
         this.reactionName = reactionName;
         this.messageToReceiver = messageToReceiver;
         this.messageToSender = messageToSender;
         this.particle = particle;
         this.sound = sound;
-        this.dealsDamage = dealsDamage;
-        if(dealsDamage){
-            this.damageNum = damageNum;
-        } else {
-            this.damageNum = 0f;
-        }
+        this.damageNum = damageNum;
 
         REACTIONS.put(reactionName.toLowerCase(), this);
-    }
-
-    public static Reaction getReaction(String reactionName){
-        return REACTIONS.get(reactionName.toLowerCase());
     }
 
     public static HashMap<String, Reaction> getReactions(){
@@ -75,8 +65,9 @@ public class Reaction {
             receiver.playSound(receiver.getLocation(), sound, SoundCategory.PLAYERS, 1.0F, 1.0F);
         }
 
-        if (reaction.isDealsDamage()){
-            receiver.damage(2.0);
+        // Deal damage to the receiver
+        if(reaction.getDamageNum() > 0.0f){
+            receiver.damage(reaction.getDamageNum());
         }
 
         // Send the player messages

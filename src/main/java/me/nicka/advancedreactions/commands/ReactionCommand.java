@@ -33,7 +33,7 @@ public class ReactionCommand implements CommandExecutor {
 
         // Check if the player has proper permissions
         if(!senderPlayer.hasPermission("advancedreactions."+reactionName)){
-            Msg.send(senderPlayer, "&cYou do not have permission to use this command");
+            Msg.send(senderPlayer, "&cYou do not have permission to use this reaction");
             return true;
         }
 
