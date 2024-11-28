@@ -78,10 +78,7 @@ reactions:
 #How long in seconds each player can use between reaction command
 ReactionCooldown: 5
 
-#How much damage does the player take when damaged by attack reaction (the ones that have damaged enabled). Enter 0 for no damage
-ReactionDamage: .001
-
-#Config Version. NOT PLUGIN VERSION
+#Config Version. NOT PLUGIN VERSION, DO NOT CHANGE
 ConfigVersion: 2.0
 
 
