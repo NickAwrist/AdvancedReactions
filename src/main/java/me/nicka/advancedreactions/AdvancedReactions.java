@@ -12,8 +12,11 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.Field;
+import java.util.Objects;
 
 public final class AdvancedReactions extends JavaPlugin {
+
+    private static final String permissionPrefix = "advancedreactions.";
 
     @Getter
     private static AdvancedReactions plugin;
@@ -52,50 +55,52 @@ public final class AdvancedReactions extends JavaPlugin {
         Bukkit.getLogger().info("------------AdvancedReactions HAS BEEN DISABLED!!!------------");
     }
 
+    // Load reactions from config
+    private void loadReactionsFromConfig(){
+        ConfigurationSection reactionSection = getConfig().getConfigurationSection("reactions");
 
-   private void loadReactionsFromConfig(){
-       ConfigurationSection reactionSection = getConfig().getConfigurationSection("reactions");
+        if(reactionSection != null){
+            for(String reactionName: reactionSection.getKeys(false)){
+                ConfigurationSection section = reactionSection.getConfigurationSection(reactionName);
+                if(section != null){
+                    final String messageToReceiver = section.getString("messageToReceiver", "");
+                    final String messageToSender = section.getString("messageToSender", "");
+                    final String particleName = section.getString("particle", null);
+                    final String soundName = section.getString("sound", null);
+                    final float damage = (float) section.getDouble("damage", 0.0);
 
-       if(reactionSection != null){
-           for(String reactionName: reactionSection.getKeys(false)){
-               ConfigurationSection section = reactionSection.getConfigurationSection(reactionName);
-               if(section != null){
-                   String messageToReceiver = section.getString("messageToReceiver", "");
-                   String messageToSender = section.getString("messageToSender", "");
-                   String particleName = section.getString("particle", null);
-                   String soundName = section.getString("sound", null);
-                   float damageNum = (float) section.getDouble("damageNum", 0.0);
+                    Particle particle = null;
+                    if(particleName != null && !particleName.isEmpty()){
+                         particle = Particle.valueOf(particleName);
+                    }
 
-                   Particle particle = null;
-                   if(particleName != null && !particleName.isEmpty()){
-                        particle = Particle.valueOf(particleName);
-                   }
+                    Sound sound = null;
+                    if(soundName != null && !soundName.isEmpty()){
+                        sound = Sound.valueOf(soundName);
+                    }
 
-                   Sound sound = null;
-                   if(soundName != null && !soundName.isEmpty()){
-                       sound = Sound.valueOf(soundName);
-                   }
+                    new Reaction(reactionName, messageToReceiver, messageToSender, particle, sound, damage);
 
-                   new Reaction(reactionName, messageToReceiver, messageToSender, particle, sound, damageNum);
+                    Bukkit.getLogger().info("Loaded reaction: "+reactionName);
+                }
+            }
+        }
+    }
 
-                   Bukkit.getLogger().info("Loaded reaction: "+reactionName);
-               }
-           }
-       }
-   }
-
-   private void registerReactionCommands(){
+    // Register reaction commands
+    private void registerReactionCommands(){
         Reaction.getReactions().forEach((reactionName, reaction) -> {
-            getCommandMap().register(reactionName, new CustomReactionCommand(
+            Objects.requireNonNull(getCommandMap()).register(reactionName, new CustomReactionCommand(
                     reactionName,
                     new ReactionCommand(reactionName),
                     "/"+reactionName+" <player>",
-                    "advancedreactions."+reactionName
+                    permissionPrefix+reactionName
             ));
             Bukkit.getLogger().info("Registered command: "+reactionName);
         });
-   }
+    }
 
+    // Get the command map
     private CommandMap getCommandMap() {
         try {
             final Field bukkitCommandMap = getServer().getClass().getDeclaredField("commandMap");

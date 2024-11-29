@@ -9,74 +9,67 @@
 #     messageToSender: Message that the sender will see
 #     particle: Particle that will be shown
 #     sound: Sound that will be played
-#     damage: TRUE or FALSE. If TRUE, the player will take damage when the reaction is used
 #     damageNum: How much damage the player will take when the reaction is used. Enter 0 for no damage or set damage to FALSE
 # Not all options have to be used
 
 reactions:
-  Kiss:
+  kiss:
     messageToReceiver: "%SENDER% has blown you a kiss ❤"
     messageToSender: "You just blew a kiss to %RECEIVER%. Awwww ❤"
     particle: "HEART"
     sound: "ENTITY_SLIME_JUMP"
-  Hug:
+  hug:
     messageToReceiver:  "%SENDER% just sent you a warm hug."
     messageToSender: "You gave %RECEIVER% a warm hug."
     particle: "VILLAGER_HAPPY"
     sound: "ENTITY_VILLAGER_TRADE"
-  Pinch:
+  pinch:
     messageToReceiver: "&cYou were pinched by %SENDER%!"
     messageToSender: "&cYou just pinched %RECEIVER%"
     particle: "SNOWBALL"
     sound: "ENTITY_BAT_HURT"
-    damage: TRUE
-    damageNum: 0.1
-  Punch:
+    damage: 0.1
+  punch:
     messageToReceiver: "&c%SENDER% just punched you!"
     messageToSender: "&cYou punched %RECEIVER%!"
     particle: "CRIT_MAGIC"
     sound: "ENTITY_PLAYER_ATTACK_STRONG"
-    damage: TRUE
-    damageNum: 0.1
-  Slap:
+    damage: 0.1
+  slap:
     messageToReceiver: "&c%SENDER% slapped you!!!"
     messageToSender: "&cYou just slapped %RECEIVER%!"
     particle: "CRIT"
     sound: "ENTITY_PLAYER_ATTACK_STRONG"
-    damage: TRUE
-    damageNum: 0.1
-  Stare:
+    damage: 0.1
+  stare:
     messageToReceiver: "&4&o%SENDER% &c&ois staring at you..."
     messageToSender: "&4&oYou stare at %RECEIVER%..."
     particle: "PORTAL"
     sound: "ENTITY_ENDERMAN_STARE"
-  Lick:
+  lick:
     messageToReceiver: "%SENDER% has licked you..."
     messageToSender: "You licked %RECEIVER%... did they taste good?"
     particle: "WATER_SPLASH"
     sound: "ENTITY_AXOLOTL_SPLASH"
-  Stab:
+  stab:
     messageToReceiver: "&c%SENDER% has stabbed you!!!!"
     messageToSender: "&cYou stabbed %RECEIVER%!!!"
     particle: "BLOCK_DUST"
     sound: "ENTITY_PUFFER_FISH_STING"
-    damage: TRUE
-    damageNum: 0.1
-  Pet:
+    damage: 0.1
+  pet:
     messageToReceiver: "%SENDER% is petting you."
     messageToSender: "You are petting %RECEIVER%."
     particle: "VILLAGER_HAPPY"
     sound: "ENTITY_WOLF_AMBIENT"
-  Highfive:
+  highfive:
     messageToReceiver: "%SENDER% just gave you a highfive!"
     messageToSender: "You shared a highfive with %RECEIVER%!"
     particle: "CRIT"
     sound: "BLOCK_STONE_STEP"
 
-#GENERAL
-
 #How long in seconds each player can use between reaction command
-ReactionCooldown: 5
+reactionCooldown: 5
 
 #Config Version. NOT PLUGIN VERSION, DO NOT CHANGE
 ConfigVersion: 2.0

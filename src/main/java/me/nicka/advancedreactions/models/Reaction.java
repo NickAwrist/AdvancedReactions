@@ -21,15 +21,15 @@ public class Reaction {
     private final String messageToSender;
     private final Particle particle;
     private final Sound sound;
-    private final float damageNum;
+    private final float damage;
 
-    public Reaction(String reactionName, String messageToReceiver, String messageToSender, Particle particle, Sound sound, float damageNum){
+    public Reaction(String reactionName, String messageToReceiver, String messageToSender, Particle particle, Sound sound, float damage){
         this.reactionName = reactionName;
         this.messageToReceiver = messageToReceiver;
         this.messageToSender = messageToSender;
         this.particle = particle;
         this.sound = sound;
-        this.damageNum = damageNum;
+        this.damage = damage;
 
         REACTIONS.put(reactionName.toLowerCase(), this);
     }
@@ -66,8 +66,8 @@ public class Reaction {
         }
 
         // Deal damage to the receiver
-        if(reaction.getDamageNum() > 0.0f){
-            receiver.damage(reaction.getDamageNum());
+        if(reaction.getDamage() > 0.0f){
+            receiver.damage(reaction.getDamage());
         }
 
         // Send the player messages
