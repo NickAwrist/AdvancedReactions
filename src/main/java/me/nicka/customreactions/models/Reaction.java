@@ -1,7 +1,7 @@
-package me.nicka.advancedreactions.models;
+package me.nicka.customreactions.models;
 
 import lombok.Getter;
-import me.nicka.advancedreactions.Msg;
+import me.nicka.customreactions.Msg;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -21,15 +21,15 @@ public class Reaction {
     private final String messageToSender;
     private final Particle particle;
     private final Sound sound;
-    private final float damage;
+    private final float damageNum;
 
-    public Reaction(String reactionName, String messageToReceiver, String messageToSender, Particle particle, Sound sound, float damage){
+    public Reaction(String reactionName, String messageToReceiver, String messageToSender, Particle particle, Sound sound, float damageNum){
         this.reactionName = reactionName;
         this.messageToReceiver = messageToReceiver;
         this.messageToSender = messageToSender;
         this.particle = particle;
         this.sound = sound;
-        this.damage = damage;
+        this.damageNum = damageNum;
 
         REACTIONS.put(reactionName.toLowerCase(), this);
     }
@@ -65,9 +65,8 @@ public class Reaction {
             receiver.playSound(receiver.getLocation(), sound, SoundCategory.PLAYERS, 1.0F, 1.0F);
         }
 
-        // Deal damage to the receiver
-        if(reaction.getDamage() > 0.0f){
-            receiver.damage(reaction.getDamage());
+        if (reaction.getDamageNum() > 0.0) {
+            receiver.damage(reaction.damageNum);
         }
 
         // Send the player messages

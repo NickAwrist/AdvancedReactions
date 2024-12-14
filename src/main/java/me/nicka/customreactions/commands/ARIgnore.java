@@ -1,7 +1,7 @@
-package me.nicka.advancedreactions.commands;
+package me.nicka.customreactions.commands;
 
-import me.nicka.advancedreactions.Msg;
-import me.nicka.advancedreactions.files.IgnoreList;
+import me.nicka.customreactions.Msg;
+import me.nicka.customreactions.files.IgnoreList;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

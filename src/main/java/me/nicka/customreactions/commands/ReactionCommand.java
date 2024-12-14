@@ -1,7 +1,7 @@
-package me.nicka.advancedreactions.commands;
+package me.nicka.customreactions.commands;
 
-import me.nicka.advancedreactions.Msg;
-import me.nicka.advancedreactions.models.Reaction;
+import me.nicka.customreactions.Msg;
+import me.nicka.customreactions.models.Reaction;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -32,10 +32,13 @@ public class ReactionCommand implements CommandExecutor {
         String reactionName = command.getName().toLowerCase();
 
         // Check if the player has proper permissions
-        if(!senderPlayer.hasPermission("advancedreactions."+reactionName)){
+        if (!senderPlayer.hasPermission("customreactions." + reactionName)
+                && !senderPlayer.hasPermission("customreactions.*")
+                && !senderPlayer.isOp()) {
             Msg.send(senderPlayer, "&cYou do not have permission to use this reaction");
             return true;
         }
+
 
         // Check if the receiver exists
         if(receiverPlayer == null){

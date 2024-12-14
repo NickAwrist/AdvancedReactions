@@ -1,4 +1,4 @@
-package me.nicka.advancedreactions.files;
+package me.nicka.customreactions.files;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -13,7 +13,7 @@ public class IgnoreList {
     private static FileConfiguration customFile;
 
     public static void setup(){
-        file = new File(Bukkit.getServer().getPluginManager().getPlugin("AdvancedReactions").getDataFolder(), "ignorelist.yml");
+        file = new File(Bukkit.getServer().getPluginManager().getPlugin("CustomReactions").getDataFolder(), "ignorelist.yml");
 
         if(!file.exists()){
             try{
@@ -41,7 +41,4 @@ public class IgnoreList {
     public static void reload(){
         customFile = YamlConfiguration.loadConfiguration(file);
     }
-
-
-
 }

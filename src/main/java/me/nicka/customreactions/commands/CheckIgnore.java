@@ -1,6 +1,6 @@
-package me.nicka.advancedreactions.commands;
+package me.nicka.customreactions.commands;
 
-import me.nicka.advancedreactions.files.IgnoreList;
+import me.nicka.customreactions.files.IgnoreList;
 import org.bukkit.entity.Player;
 
 import java.util.List;

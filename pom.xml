@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.nicka</groupId>
-    <artifactId>advanced-reactions</artifactId>
+    <artifactId>custom-reactions</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>AdvancedReactions</name>
+    <name>CustomReactions</name>
 
     <description>At as loss for words after your friend does something dumb? Slap them!</description>
     <properties>

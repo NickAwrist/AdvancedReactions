@@ -1,4 +1,4 @@
-package me.nicka.advancedreactions;
+package me.nicka.customreactions;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;

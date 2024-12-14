@@ -1,19 +1,12 @@
-name: AdvancedReactions
+name: CustomReactions
 version: '${project.version}'
-main: me.nicka.advancedreactions.AdvancedReactions
+main: me.nicka.customreactions.CustomReactions
 api-version: 1.19
-prefix: AdvancedReactions
+prefix: CustomReactions
 authors: [ Nick_the_block ]
 description: A chat reaction plugin for Minecraft
-
 commands:
-  ar:
+  reactions:
     description: List all reactions
-    usage: /ar
-    permission: ar.list
-    aliases: [arlist]
-  arignore:
-    description: Ignore a player's reactions
-    usage: /arignore <player>
-    permission: ar.ignore
-    aliases: [arignore]
+    usage: /reactions
+    permission: customreactions.command.reactions

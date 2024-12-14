@@ -1,17 +1,16 @@
-package me.nicka.advancedreactions.commands;
+package me.nicka.customreactions.commands;
 
-import me.nicka.advancedreactions.AdvancedReactions;
-import me.nicka.advancedreactions.Msg;
-import me.nicka.advancedreactions.models.Reaction;
+import me.nicka.customreactions.CustomReactions;
+import me.nicka.customreactions.Msg;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
-public class ARList implements CommandExecutor {
+public class ReactionList implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
@@ -24,19 +23,20 @@ public class ARList implements CommandExecutor {
         Player sender = (Player) commandSender;
 
         // Check if the player has proper permissions
-        if(!sender.hasPermission("advancedreactions.list")){
+        if(!sender.hasPermission("customreactions.command.reactions") && !sender.hasPermission("customreactions.*") && !sender.isOp()){
             Msg.send(sender, "&cYou do not have permission to use this command");
             return true;
         }
 
-        HashMap<String, Reaction> reactionHashMap = Reaction.getReactions();
-
-        Msg.send(sender, "&l--List of Reactions--", AdvancedReactions.getPlugin().getPrefix());
-        for(String reactionName : reactionHashMap.keySet()){
-            Msg.send(sender, "&7- &e" + reactionName, AdvancedReactions.getPlugin().getPrefix());
+        Msg.send(sender, "&l--List of Reactions--", CustomReactions.getPlugin().getPrefix());
+        ArrayList<CustomReactionCommand> reactions = CustomReactionCommand.getReactions();
+        for(CustomReactionCommand reaction : reactions){
+            Msg.send(sender, "&7- &e/"+reaction.getName());
         }
 
+
         return true;
+
     }
 
 }
