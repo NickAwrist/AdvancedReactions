@@ -2,7 +2,6 @@ package me.nicka.customreactions;
 
 import lombok.Getter;
 import me.nicka.customreactions.commands.*;
-import me.nicka.customreactions.files.IgnoreList;
 import me.nicka.customreactions.models.Reaction;
 import org.bukkit.Bukkit;
 import org.bukkit.Particle;
@@ -27,13 +26,9 @@ public final class CustomReactions extends JavaPlugin {
         getConfig().options().copyDefaults();
         this.saveDefaultConfig();
 
-        //IgnoreList.setup();
-        //IgnoreList.get().options().copyDefaults();
-        //IgnoreList.save();
-
         double version = 2.0;
 
-        if(getConfig().getInt("ConfigVersion") != version){
+        if(getConfig().getDouble("ConfigVersion") != version){
             Bukkit.getLogger().warning("[CR] OUT-OF-DATE CONFIG. DELETE OLD ONE AND RESTART SERVER");
         }
 
@@ -95,7 +90,7 @@ public final class CustomReactions extends JavaPlugin {
         Reaction.getReactions().forEach((reactionName, reaction) -> {
             getCommandMap().register(reactionName, new CustomReactionCommand(
                     reactionName,
-                    new ReactionCommand(reactionName),
+                    new ReactionCommand(),
                     "/"+reactionName+" <player>",
                     "customreactions."+reactionName
             ));
