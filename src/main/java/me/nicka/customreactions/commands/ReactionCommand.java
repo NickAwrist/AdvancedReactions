@@ -22,27 +22,27 @@ public class ReactionCommand implements CommandExecutor {
 
         // Get the player objects and reaction name
         Player senderPlayer = (Player) sender;
-        Player receiverPlayer = Bukkit.getPlayer(args[0]);
+        Player targetPlayer = Bukkit.getPlayer(args[0]);
         String reactionName = command.getName().toLowerCase();
 
         // Check if the player has proper permissions
-        if (!senderPlayer.hasPermission("customreactions." + reactionName)
-                && !senderPlayer.hasPermission("customreactions.*")
+        if (!senderPlayer.hasPermission("customreactions.reaction." + reactionName)
+                && !senderPlayer.hasPermission("customreactions.reaction.*")
                 && !senderPlayer.isOp()) {
             Msg.send(senderPlayer, "&cYou do not have permission to use this reaction");
             return true;
         }
 
 
-        // Check if the receiver exists
-        if(receiverPlayer == null){
+        // Check if the target exists
+        if(targetPlayer == null){
             senderPlayer.sendMessage("Player not found");
             return true;
         }
 
         // Execute the reaction
         try {
-            Reaction.executeReaction(reactionName, senderPlayer, receiverPlayer);
+            Reaction.executeReaction(reactionName, senderPlayer, targetPlayer);
         } catch(IllegalArgumentException e){
             Msg.send(senderPlayer, e.getMessage());
         }

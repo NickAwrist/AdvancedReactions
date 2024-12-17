@@ -17,15 +17,15 @@ public class Reaction {
     private static final HashMap<String, Reaction> REACTIONS = new HashMap<>();
 
     private final String reactionName;
-    private final String messageToReceiver;
+    private final String messageToTarget;
     private final String messageToSender;
     private final Particle particle;
     private final Sound sound;
     private final float damageNum;
 
-    public Reaction(String reactionName, String messageToReceiver, String messageToSender, Particle particle, Sound sound, float damageNum){
+    public Reaction(String reactionName, String messageToTarget, String messageToSender, Particle particle, Sound sound, float damageNum){
         this.reactionName = reactionName;
-        this.messageToReceiver = messageToReceiver;
+        this.messageToTarget = messageToTarget;
         this.messageToSender = messageToSender;
         this.particle = particle;
         this.sound = sound;
@@ -38,7 +38,7 @@ public class Reaction {
         return REACTIONS;
     }
 
-    public static void executeReaction(String reactionName, Player sender, Player receiver) {
+    public static void executeReaction(String reactionName, Player sender, Player target) {
         Reaction reaction = REACTIONS.get(reactionName);
 
         // Check if the reaction exists
@@ -46,47 +46,47 @@ public class Reaction {
             throw new IllegalArgumentException("Reaction with name \"" + reactionName + "\" does not exist.");
         }
 
-        // Edit the messages to include the sender and receiver names
-        String receiverName = receiver.getName();
+        // Edit the messages to include the sender and target names
+        String targetName = target.getName();
         String senderName = sender.getName();
 
-        String receiverMessage = reaction.getMessageToReceiver().replace("%SENDER%", senderName).replace("%RECEIVER%", receiverName);
-        String senderMessage = reaction.getMessageToSender().replace("%SENDER%", senderName).replace("%RECEIVER%", receiverName);
+        String targetMessage = reaction.getMessageToTarget().replace("%SENDER%", senderName).replace("%TARGET%", targetName);
+        String senderMessage = reaction.getMessageToSender().replace("%SENDER%", senderName).replace("%TARGET%", targetName);
 
         // Summon the particles
         Particle particle = reaction.getParticle();
         if (particle != null) {
-            displayParticles(receiver, particle);
+            displayParticles(target, particle);
         }
 
         // Play the sound
         Sound sound = reaction.getSound();
         if (sound != null) {
-            receiver.playSound(receiver.getLocation(), sound, SoundCategory.PLAYERS, 1.0F, 1.0F);
+            target.playSound(target.getLocation(), sound, SoundCategory.PLAYERS, 1.0F, 1.0F);
         }
 
         if (reaction.getDamageNum() > 0.0) {
-            receiver.damage(reaction.damageNum);
+            target.damage(reaction.damageNum);
         }
 
         // Send the player messages
-        Msg.send(receiver, receiverMessage);
+        Msg.send(target, targetMessage);
         Msg.send(sender, senderMessage);
     }
 
-    private static void displayParticles(Player receiver, Particle particle) {
+    private static void displayParticles(Player target, Particle particle) {
         if (particle.equals(Particle.BLOCK_DUST)) {
             BlockData blood = Material.REDSTONE_BLOCK.createBlockData();
 
-            receiver.getWorld().spawnParticle(particle, receiver.getLocation().getX() + 1, receiver.getLocation().getY() + 1, receiver.getLocation().getZ(), 3, blood);
-            receiver.getWorld().spawnParticle(particle, receiver.getLocation().getX() - 1, receiver.getLocation().getY() + 1, receiver.getLocation().getZ(), 3, blood);
-            receiver.getWorld().spawnParticle(particle, receiver.getLocation().getX(), receiver.getLocation().getY() + 1, receiver.getLocation().getZ() + 1, 3, blood);
-            receiver.getWorld().spawnParticle(particle, receiver.getLocation().getX(), receiver.getLocation().getY() + 1, receiver.getLocation().getZ() - 1, 3, blood);
+            target.getWorld().spawnParticle(particle, target.getLocation().getX() + 1, target.getLocation().getY() + 1, target.getLocation().getZ(), 3, blood);
+            target.getWorld().spawnParticle(particle, target.getLocation().getX() - 1, target.getLocation().getY() + 1, target.getLocation().getZ(), 3, blood);
+            target.getWorld().spawnParticle(particle, target.getLocation().getX(), target.getLocation().getY() + 1, target.getLocation().getZ() + 1, 3, blood);
+            target.getWorld().spawnParticle(particle, target.getLocation().getX(), target.getLocation().getY() + 1, target.getLocation().getZ() - 1, 3, blood);
         } else {
-            receiver.getWorld().spawnParticle(particle, receiver.getLocation().getX() + 1, receiver.getLocation().getY() + 1, receiver.getLocation().getZ(), 1);
-            receiver.getWorld().spawnParticle(particle, receiver.getLocation().getX() - 1, receiver.getLocation().getY() + 1, receiver.getLocation().getZ(), 1);
-            receiver.getWorld().spawnParticle(particle, receiver.getLocation().getX(), receiver.getLocation().getY() + 1, receiver.getLocation().getZ() + 1, 1);
-            receiver.getWorld().spawnParticle(particle, receiver.getLocation().getX(), receiver.getLocation().getY() + 1, receiver.getLocation().getZ() - 1, 1);
+            target.getWorld().spawnParticle(particle, target.getLocation().getX() + 1, target.getLocation().getY() + 1, target.getLocation().getZ(), 1);
+            target.getWorld().spawnParticle(particle, target.getLocation().getX() - 1, target.getLocation().getY() + 1, target.getLocation().getZ(), 1);
+            target.getWorld().spawnParticle(particle, target.getLocation().getX(), target.getLocation().getY() + 1, target.getLocation().getZ() + 1, 1);
+            target.getWorld().spawnParticle(particle, target.getLocation().getX(), target.getLocation().getY() + 1, target.getLocation().getZ() - 1, 1);
         }
     }
 

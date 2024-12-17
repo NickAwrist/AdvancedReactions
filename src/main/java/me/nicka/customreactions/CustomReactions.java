@@ -60,7 +60,7 @@ public final class CustomReactions extends JavaPlugin {
            for(String reactionName: reactionSection.getKeys(false)){
                ConfigurationSection section = reactionSection.getConfigurationSection(reactionName);
                if(section != null){
-                   String messageToReceiver = section.getString("messageToReceiver", "");
+                   String messageToTarget = section.getString("messageToTarget", "");
                    String messageToSender = section.getString("messageToSender", "");
                    String particleName = section.getString("particle", null);
                    String soundName = section.getString("sound", null);
@@ -76,7 +76,7 @@ public final class CustomReactions extends JavaPlugin {
                        sound = Sound.valueOf(soundName);
                    }
 
-                   new Reaction(reactionName, messageToReceiver, messageToSender, particle, sound, damageNum);
+                   new Reaction(reactionName, messageToTarget, messageToSender, particle, sound, damageNum);
 
                    Bukkit.getLogger().info("Loaded reaction: "+reactionName);
                      totalReaction++;
